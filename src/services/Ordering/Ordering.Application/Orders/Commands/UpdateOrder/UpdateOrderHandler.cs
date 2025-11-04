@@ -42,6 +42,11 @@
                 orderDto.Payment.Cvv,
                 orderDto.Payment.PaymentMethod);
 
+            foreach (var orderItem in orderDto.OrderItems)
+            {
+                order.Add(ProductId.Of(orderItem.ProductId), orderItem.Quantity, orderItem.Price);
+            }
+
             order.Update(
                 orderName: OrderName.Of(orderDto.OrderName), 
                 shippingAddress: updatedShippingAddress, 
