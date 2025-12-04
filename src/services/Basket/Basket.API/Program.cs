@@ -1,11 +1,9 @@
-//using Discount.Grpc;
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// add services to the container
 
 /////////////////////////////////////////////////////////////////////
 // Application Services
@@ -58,6 +56,12 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     };
     return handler;
 });
+
+/////////////////////////////////////////////////////////////////////
+// Async Communication Services
+/////////////////////////////////////////////////////////////////////
+
+builder.Services.AddMessageBroker(builder.Configuration);
 
 /////////////////////////////////////////////////////////////////////
 // Cross-cutting Services

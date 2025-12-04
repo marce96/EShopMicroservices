@@ -27,7 +27,7 @@ namespace Basket.API.Basket.StoreBasket
         {
             foreach (var item in cart.Items)
             {
-                var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
+                 var coupon = await discountProto.GetDiscountAsync(new GetDiscountRequest { ProductName = item.ProductName }, cancellationToken: cancellationToken);
                 item.Price -= coupon.Amount;
             }
         }
